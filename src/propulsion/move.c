@@ -16,7 +16,7 @@ ACTION_STATE __propulsion_move(Propulsion_Parameters *parameters)
 {
     static int test = 1;
 
-    LOG(LOG_DEBUG, "Propulsion TEST: %d", parameters->speed);
+    LOG(LOG_DEBUG, "Propulsion MOVE: %d", parameters->speed);
 
     if(test == 0)
     {
