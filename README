@@ -1,0 +1,61 @@
+
+
+
+--------------------
+--  CODING STYLE  --
+--------------------
+
+c style:
+-> awk
+
+comment:
+
+name functions: (minuscule) for public functions
+-> name file + _ + functionnality
+ex: log_trace in file log.c
+
+Space:
+2 spaces enter between each functions
+
+Separate functions public and private
+
+functions callback: __ at the beginning
+
+
+
+----------------
+--  LOG INFO  --
+----------------
+
+Log type:
+-> error
+-> debug
+-> info
+
+Code color:
+-> red: error log
+-> green: debug log
+-> blue: info log
+
+Format log:
+Log type + date + calling function (name file, name functions and line number) + message
+ex:
+LOG_ERROR [13/10/2014 11:05]: (main.c detect_error l45) PANIC
+
+Log level:
+0 -> show no log
+1 -> show info log
+2 -> show debug log
+3 -> show error log
+4 -> show error and debug log
+5 -> show all log
+
+-----------------------------
+--  ARCHITECTURE SOFTWARE  --
+-----------------------------
+
+File d'actions:
+-> action type
+-> action function
+-> action priority
+
