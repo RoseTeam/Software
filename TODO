@@ -1,31 +1,11 @@
---------------------
---  Architecture  --
---------------------
+TODO
+----
 
-mono core
--> multi-threading ??
 
-compilation:
--> autotools
+Propulsion:
 
-Tree:
--> actuators
--> strategy
--> propulsion
--> extras
 
-Coding style ??
+Actuators:
 
-Watchdog ??
 
-Branch:
--> Master (linux)
--> Strategy (dev)
--> Actuators (dev)
--> Propulsion (dev)
--> extras (dev)
--> RT (dev)
-
-Where put localisation and avoid ??
-
-Threads action and detection ??
+Strategy:
