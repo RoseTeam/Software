@@ -37,5 +37,4 @@ void timer2_set(int seconds);
 
 void timer2_reset(void);
 
-
 #endif

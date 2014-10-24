@@ -38,11 +38,10 @@ ACTION_STATE __propulsion_move(Propulsion_Parameters *parameters)
 
     LOG(LOG_DEBUG, "Propulsion MOVE: %d", parameters->speed);
 
-    if(test == 0)
+    if (test == 0)
     {
         return DONE;
-    }
-    else
+    }else
     {
         test++;
         return ONGOING;

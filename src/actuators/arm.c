@@ -38,11 +38,10 @@ ACTION_STATE __actuators_arm(Actuators_Parameters *parameters)
 
     LOG(LOG_DEBUG, "Actuators ARM: %d", parameters->sensors);
 
-    if(test == 40)
+    if (test == 40)
     {
         return DONE;
-    }
-    else
+    }else
     {
         test++;
         return ONGOING;

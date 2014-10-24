@@ -69,17 +69,15 @@ void action_add(File *file, ACTION_TYPE type, char* name, void *action, void *da
     new->priority = priority;
     new->next = NULL;
 
-    if (file->first != NULL) /* La file n'est pas vide */
+    if (file->first != NULL)
     {
-        /* On se positionne à la fin de la file */
         Action *current = file->first;
         while (current->next != NULL)
         {
             current = current->next;
         }
         current->next = new;
-    }
-    else /* La file est vide, notre élément est le premier */
+    }else
     {
         file->first = new;
     }
@@ -93,7 +91,6 @@ void action_remove_first(File *file)
         exit(EXIT_FAILURE);
     }
 
-    /* On vérifie s'il y a quelque chose à défiler */
     if (file->first != NULL)
     {
         Action *action = file->first;
@@ -121,11 +118,10 @@ void action_remove_by_index(File *file, int index)
     }
 
 
-    /* On vérifie s'il y a quelque chose à défiler */
     if (file->first != NULL)
     {
         Action *action_prev = file->first;
-        while(i != (index-1)  && action_prev != NULL)
+        while (i != (index-1)  && action_prev != NULL)
         {
             action_prev = action_prev->next;
             i++;
@@ -149,11 +145,10 @@ void action_remove_failed(File *file)
         exit(EXIT_FAILURE);
     }
 
-    /* On vérifie s'il y a quelque chose à défiler */
     if (file->first != NULL)
     {
         Action *action = file->first;
-        while(action->state == FAILED)
+        while (action->state == FAILED)
         {
             action_remove_first(file);
             action = file->first;
@@ -165,7 +160,7 @@ void action_remove_failed(File *file)
 
         Action *action_next = action->next;
 
-        while(action_next != NULL)
+        while (action_next != NULL)
         {
             if(action_next->state == FAILED)
             {
@@ -188,13 +183,12 @@ void action_remove_all(File *file)
         exit(EXIT_FAILURE);
     }
 
-    /* On vérifie s'il y a quelque chose à défiler */
     if (file->first != NULL)
     {
         Action *action = file->first;
         Action *buffer;
      
-        while(action == NULL)
+        while (action == NULL)
         {
             buffer = action->next;
             free(action->name);
@@ -219,13 +213,12 @@ int action_get_index_by_name(File *file, char *name)
 
     Action *action = file->first;
 
-    /* On vérifie s'il y a quelque chose à défiler */
     if (file->first != NULL)
     {
-        while(action != NULL)
+        while (action != NULL)
         {
             index++;
-            if(!strcmp(name, action->name))
+            if (!strcmp(name, action->name))
             {
                 return index;
             }
@@ -246,19 +239,19 @@ Action *action_get_object(File *file, int index)
     }
 
 
-    /* On vérifie s'il y a quelque chose à défiler */
     if (file->first != NULL)
     {
         Action *action = file->first;
-        while(i != (index-1) && action->next != NULL)
+        while (i != (index-1) && action->next != NULL)
         {
             action = action->next;
             i++;
         }
-        if(action != NULL)
+        if (action != NULL)
         {
             return action;
-        } else {
+        }else
+        {
             return NULL;
         }
     }
@@ -269,10 +262,11 @@ Action *action_get_object(File *file, int index)
 ACTION_TYPE action_get_type(File *file, int index)
 {
     Action *action = action_get_object(file,index);
-    if(action == NULL)
+    if (action == NULL)
     {
         return UNKNOWN_TYPE;
-    } else {
+    }else
+    {
         return action->type;
     }
 }
@@ -281,10 +275,11 @@ ACTION_TYPE action_get_type(File *file, int index)
 char *action_get_name(File *file, int index)
 {
     Action *action = action_get_object(file,index);
-    if(action == NULL)
+    if (action == NULL)
     {
         return NULL;
-    } else {
+    }else
+    {
         return action->name;
     }
 }
@@ -293,10 +288,11 @@ char *action_get_name(File *file, int index)
 void *action_get_action(File *file, int index)
 {
     Action *action = action_get_object(file,index);
-    if(action == NULL)
+    if (action == NULL)
     {
         return NULL;
-    } else {
+    }else
+    {
         return action->action;
     }
 }
@@ -305,10 +301,11 @@ void *action_get_action(File *file, int index)
 void *action_get_data(File *file, int index)
 {
     Action *action = action_get_object(file,index);
-    if(action == NULL)
+    if (action == NULL)
     {
         return NULL;
-    } else {
+    }else
+    {
         return action->data;
     }
 }
@@ -317,10 +314,11 @@ void *action_get_data(File *file, int index)
 int action_get_timeout(File *file, int index)
 {
     Action *action = action_get_object(file,index);
-    if(action == NULL)
+    if (action == NULL)
     {
         return 0;
-    } else {
+    }else
+    {
         return action->timeout;
     }
 }
@@ -329,10 +327,11 @@ int action_get_timeout(File *file, int index)
 void *action_get_failed_handler(File *file, int index)
 {
     Action *action = action_get_object(file,index);
-    if(action == NULL)
+    if (action == NULL)
     {
         return NULL;
-    } else {
+    }else
+    {
         return action->failed_handler;
     }
 }
@@ -341,10 +340,11 @@ void *action_get_failed_handler(File *file, int index)
 ACTION_STATE action_get_state(File *file, int index)
 {
     Action *action = action_get_object(file,index);
-    if(action == NULL)
+    if (action == NULL)
     {
         return UNKNOWN_STATE;
-    } else {
+    }else
+    {
         return action->state;
     }
 }
@@ -353,10 +353,11 @@ ACTION_STATE action_get_state(File *file, int index)
 ACTION_PRIORITY action_get_priority(File *file, int index)
 {
     Action *action = action_get_object(file,index);
-    if(action == NULL)
+    if (action == NULL)
     {
         return UNKNOWN_PRIORITY;
-    } else {
+    }else
+    {
         return action->priority;
     }
 }
@@ -424,7 +425,7 @@ void action_print_file(File *file)
 {     
     Action *action = file->first;
     LOG(LOG_DEBUG,"Type:\tName:\t\tTimeout:\tState:\tPriority:");
-    if(action == NULL)
+    if (action == NULL)
     {
         return;
     }

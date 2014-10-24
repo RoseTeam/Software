@@ -1,3 +1,4 @@
+
 /******************************************************************************
  **  Copyright (c) 2014, RoseTeam Software. All Rights Reserved.
  **
@@ -113,14 +114,14 @@ void log_print(LOG_LEVEL lvl, char* file, char* func, int line, char *fmt, ... )
 
     char *msg = malloc(512 * sizeof(char));
 
-    va_start( list, fmt );
-    while(*fmt)
+    va_start(list, fmt);
+    while (*fmt)
     {
-        if ( *fmt != '%' )
+        if (*fmt != '%')
             memcpy(msg + j, fmt, 1);
         else
         {
-            switch ( *++fmt )
+            switch (*++fmt)
             {
             case 's':
                 s = va_arg( list, char * );
@@ -149,29 +150,29 @@ void log_print(LOG_LEVEL lvl, char* file, char* func, int line, char *fmt, ... )
     va_end(list);
 
 
-    switch(log_level)
+    switch (log_level)
     {
 
     case 0:
         break;
 
     case 1:
-        if(lvl == LOG_INFO)
+        if (lvl == LOG_INFO)
             log_format(lvl, file, func, line, msg);
         break;
 
     case 2:
-        if(lvl == LOG_DEBUG)
+        if (lvl == LOG_DEBUG)
             log_format(lvl, file, func, line, msg);
         break;
 
     case 3:
-        if(lvl == LOG_ERROR)
+        if (lvl == LOG_ERROR)
             log_format(lvl, file, func, line, msg);
         break;
 
     case 4:
-        if(lvl == LOG_ERROR || lvl == LOG_DEBUG)
+        if (lvl == LOG_ERROR || lvl == LOG_DEBUG)
             log_format(lvl, file, func, line, msg);
         break;
 

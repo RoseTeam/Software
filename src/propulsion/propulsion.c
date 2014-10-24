@@ -52,15 +52,12 @@ void propulsion_handle_state(Action *propulsion, ACTION_STATE ret)
             propulsion_set_timer = false;
         }
 
-    }
-    else
+    }else
     {
-
         propulsion->state = FAILED;
         timer1_reset();
         propulsion_timer_expired = false;
         propulsion_set_timer = false;
-
     }
 }
 
@@ -68,7 +65,7 @@ void propulsion_handle_state(Action *propulsion, ACTION_STATE ret)
 void propulsion_callback_timer(int signal)
 {
     LOG(LOG_DEBUG, "Propulsion Timer Expired");
-    if(propulsion_action_handler->failed_handler != NULL)
+    if (propulsion_action_handler->failed_handler != NULL)
     {
         propulsion_action_handler->failed_handler();
     }
@@ -82,14 +79,14 @@ void propulsion_management(Action *propulsion)
 {
     ACTION_STATE ret;
 
-    if(propulsion_set_timer == false)
+    if (propulsion_set_timer == false)
     {
         propulsion_action_handler = propulsion;
         timer1_set(propulsion->timeout);
         propulsion_set_timer = true;
     }
 
-    if(propulsion->action != NULL)
+    if (propulsion->action != NULL)
     {
         ret = propulsion->action(propulsion->data);
     }
@@ -117,30 +114,31 @@ void propulsion_init(void)
 void propulsion_loop(File *actions)
 {
     Action *propulsion = actions->first;
-    if(propulsion == NULL)
+    if (propulsion == NULL)
     {
         return;
     }
 
     LOG(LOG_INFO, "Loop Propulsion");
 
-    if(propulsion->type == PROPULSION  || (propulsion->priority > NO))
+    if (propulsion->type == PROPULSION  || (propulsion->priority > NO))
     {
 
-        if(propulsion->type == PROPULSION && (propulsion->state == INIT || propulsion->state == ONGOING))
+        if (propulsion->type == PROPULSION && (propulsion->state == INIT || propulsion->state == ONGOING))
         {
             propulsion_management(propulsion);
         }
 
-    }else{
+    }else
+    {
 
         propulsion = propulsion->next;
-        if(propulsion == NULL)
+        if (propulsion == NULL)
         {
             return;
         }
 
-        if(propulsion->type == PROPULSION && (propulsion->state == INIT || propulsion->state == ONGOING))
+        if (propulsion->type == PROPULSION && (propulsion->state == INIT || propulsion->state == ONGOING))
         {
 
             propulsion_management(propulsion);

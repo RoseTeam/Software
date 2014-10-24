@@ -53,21 +53,21 @@ void strategy_example(Action *actions)
 void strategy_handle_state(File *actions)
 {
     Action *action = actions->first;
-    if(action == NULL)
+    if (action == NULL)
     {
         return;
     }
 
-    if(action->state == DONE || action->state == FAILED)
+    if (action->state == DONE || action->state == FAILED)
         action_remove_by_index(actions, 1);
 
     action = action->next;
-    if(action == NULL)
+    if (action == NULL)
     {
         return;
     }
 
-    if(action->state == DONE || action->state == FAILED)
+    if (action->state == DONE || action->state == FAILED)
         action_remove_by_index(actions, 2);
 
     action_print_file(actions);

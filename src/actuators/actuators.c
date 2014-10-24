@@ -41,26 +41,23 @@ bool actuators_set_timer;
 
 void actuators_handle_state(Action *actuators, ACTION_STATE ret)
 {
-    if(actuators_timer_expired == false)
+    if (actuators_timer_expired == false)
     {
         actuators->state = ret;
 
-        if(actuators->state == DONE)
+        if (actuators->state == DONE)
         {
             timer2_reset();
             actuators_timer_expired = false;
             actuators_set_timer = false;
         }
 
-    }
-    else
+    }else
     {
-
         actuators->state = FAILED;
         timer2_reset();
         actuators_timer_expired = false;
         actuators_set_timer = false;
-
     }
 }
 
@@ -68,7 +65,7 @@ void actuators_handle_state(Action *actuators, ACTION_STATE ret)
 void actuators_callback_timer(int signal)
 {
     LOG(LOG_DEBUG, "Actuators Timer Expired");
-    if(actuators_action_handler->failed_handler != NULL)
+    if (actuators_action_handler->failed_handler != NULL)
     {
         actuators_action_handler->failed_handler();
     }
@@ -82,14 +79,14 @@ void actuators_management(Action *actuators)
 {
     ACTION_STATE ret;
 
-    if(actuators_set_timer == false)
+    if (actuators_set_timer == false)
     {
         actuators_action_handler = actuators;
         timer2_set(actuators->timeout);
         actuators_set_timer = true;
     }
 
-    if(actuators->action != NULL)
+    if (actuators->action != NULL)
     {
         ret = actuators->action(actuators->data);
     }
@@ -132,7 +129,8 @@ void actuators_loop(File *actions)
             actuators_management(actuators);
         }
 
-    }else{
+    }else
+    {
 
         actuators = actuators->next;
         if(actuators == NULL)
@@ -142,9 +140,7 @@ void actuators_loop(File *actions)
 
         if(actuators->type == ACTUATORS && (actuators->state == INIT || actuators->state == ONGOING))
         {
-
             actuators_management(actuators);
-
         }
 
     }
