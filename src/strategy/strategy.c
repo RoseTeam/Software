@@ -36,7 +36,7 @@
 
 **************************************/
 
-void strategy_example(Action *actions)
+void strategy_example(File *actions)
 {
     Propulsion_Parameters *param_propulsion = malloc(sizeof(Propulsion_Parameters));
     Actuators_Parameters *param_actuators = malloc(sizeof(Actuators_Parameters));
@@ -55,6 +55,7 @@ void strategy_handle_state(File *actions)
     Action *action = actions->first;
     if (action == NULL)
     {
+        action_print_file(actions);
         return;
     }
 
@@ -64,6 +65,7 @@ void strategy_handle_state(File *actions)
     action = action->next;
     if (action == NULL)
     {
+        action_print_file(actions);
         return;
     }
 

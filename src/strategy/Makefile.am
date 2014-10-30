@@ -12,7 +12,8 @@ AM_CPPFLAGS = \
 -I$(top_builddir)/src/strategy \
 -DPACKAGE_BIN_DIR=\"$(bindir)\" \
 -DPACKAGE_LIB_DIR=\"$(libdir)\" \
--DPACKAGE_DATA_DIR=\"$(pkgdatadir)\"
+-DPACKAGE_DATA_DIR=\"$(pkgdatadir)\" \
+-DLOG_ENABLE=0
 
 includes_HEADERS = strategy.h
 includesdir = $(includedir)/Software
