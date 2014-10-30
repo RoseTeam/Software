@@ -8,7 +8,8 @@ AM_CPPFLAGS = \
 -I$(top_builddir)/src/actuators \
 -DPACKAGE_BIN_DIR=\"$(bindir)\" \
 -DPACKAGE_LIB_DIR=\"$(libdir)\" \
--DPACKAGE_DATA_DIR=\"$(pkgdatadir)\"
+-DPACKAGE_DATA_DIR=\"$(pkgdatadir)\" \
+-DLOG_ENABLE=0
 
 includes_HEADERS = actuators.h
 includesdir = $(includedir)/Software
