@@ -17,9 +17,11 @@ libextras_la_SOURCES = \
 action.h \
 log.h \
 timer.h \
+sysfs.h \
 action.c \
 log.c \
-timer.c
+timer.c \
+sysfs.c
 
 #libextras_la_LIBADD = @EXTRAS_LIBS@
 libextras_la_LDFLAGS = -lrt
