@@ -29,6 +29,7 @@ Makefile
 src/Makefile
 src/actuators/Makefile
 src/extras/Makefile
+src/extras/roxml/Makefile
 src/propulsion/Makefile
 src/strategy/Makefile
 ])
