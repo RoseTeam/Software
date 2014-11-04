@@ -1,0 +1,9 @@
+<Actuators>
+  <Arm>
+    <Speed>34</Speed>
+    <Angle>45</Angle>
+  </Arm>
+  <Sensors>
+    <Value>34</Value>
+  </Sensors>
+</Actuators>

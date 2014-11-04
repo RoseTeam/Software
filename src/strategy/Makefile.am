@@ -25,5 +25,5 @@ avoid.h \
 strategy.c \
 avoid.c
 
-libpropulsion_la_LIBADD = ../extras/libextras.la ../actuators/libactuators.la ../propulsion/libpropulsion.la
+libstrategy_la_LIBADD = ../extras/libextras.la ../actuators/libactuators.la ../propulsion/libpropulsion.la
 #libstrategy_la_LDFLAGS = -no-undefined @lt_enable_auto_import@ -version-info @version_info@ @release_info@

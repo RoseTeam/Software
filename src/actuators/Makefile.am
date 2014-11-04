@@ -21,5 +21,5 @@ arm.h \
 actuators.c \
 arm.c
 
-libpropulsion_la_LIBADD = ../extras/libextras.la
+libactuators_la_LIBADD = ../extras/libextras.la
 #libactuators_la_LDFLAGS = -no-undefined @lt_enable_auto_import@ -version-info @version_info@ @release_info@
