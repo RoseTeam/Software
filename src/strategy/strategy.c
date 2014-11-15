@@ -60,7 +60,21 @@ void strategy_handle_state(File *actions)
     }
 
     if (action->state == DONE || action->state == FAILED)
+    {
         action_remove_by_index(actions, 1);
+        action = action->next;
+        if (action == NULL)
+        {
+            action_print_file(actions);
+            return;
+        }
+
+        if (action->state == DONE || action->state == FAILED)
+            action_remove_by_index(actions, 1);
+
+        action_print_file(actions);
+        return;
+    }
 
     action = action->next;
     if (action == NULL)
