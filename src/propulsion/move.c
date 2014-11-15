@@ -53,7 +53,6 @@ ACTION_STATE __propulsion_move(Propulsion_Move *parameters)
     else if (test > 95)
     {
         parameters->x = 4;
-        timer1_reset();
         return FAILED;
     }
     else
