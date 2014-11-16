@@ -106,7 +106,7 @@ void actuators_init(void)
 {
     LOG(LOG_INFO, "Init Actuators");
     actuators_timer_expired = false;
-    actuators_set_timer == false;
+    actuators_set_timer = false;
     timer2_add(actuators_callback_timer);
 }
 

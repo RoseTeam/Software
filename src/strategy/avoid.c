@@ -33,7 +33,7 @@
 
 **************************************/
 
-void *avoid_thread(void *data)
+void avoid_thread(void *data)
 {
 
     while(1)
