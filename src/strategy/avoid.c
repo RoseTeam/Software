@@ -33,7 +33,7 @@
 
 **************************************/
 
-void avoid_thread(void *data)
+void *avoid_thread(void *data)
 {
 
     while(1)
@@ -43,7 +43,7 @@ void avoid_thread(void *data)
 	sleep(2);
 
     }
-
+    return NULL;
 }
 
 
