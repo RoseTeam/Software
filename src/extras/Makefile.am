@@ -15,7 +15,7 @@ AM_CPPFLAGS = \
 includes_HEADERS = log.h
 includesdir = $(includedir)/Software
 
-lib_LTLIBRARIES = libextras.la
+noinst_LTLIBRARIES = libextras.la
 
 libextras_la_SOURCES = \
 action.h \

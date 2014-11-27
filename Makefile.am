@@ -1,4 +1,5 @@
 AUTOMAKE_OPTIONS = 1.4 foreign
+ACLOCAL_AMFLAGS = -I m4
 
 SUBDIRS = src
 
