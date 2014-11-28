@@ -22,6 +22,7 @@
 #include <stdlib.h>
 #include "move.h"
 #include "log.h"
+#include "timer.h"
 
 
 
@@ -32,20 +33,34 @@
 
 **************************************/
 
-ACTION_STATE __propulsion_move(Propulsion_Parameters *parameters)
+ACTION_STATE __propulsion_move(Propulsion_Move *parameters)
 {
-    static int test = 1;
+    int test = 0;
 
-    LOG(LOG_DEBUG, "Propulsion MOVE: %d", parameters->speed);
+    LOG(LOG_DEBUG, "Propulsion MOVE: %d, %d, %d, %d", parameters->speed, parameters->angle, parameters->x, parameters->y);
 
-    if (test == 0)
+    srand (time(NULL));
+
+    /* value between 1 and 100 */
+    test = (rand() % 100) + 1;
+    LOG(LOG_DEBUG, "Rand Value: %d", test);
+
+    if (test < 10)
     {
+        parameters->x = 6;
         return DONE;
-    }else
+    }
+    else if (test > 95)
     {
-        test++;
+        parameters->x = 4;
+        return FAILED;
+    }
+    else
+    {
+        parameters->x = 5;
         return ONGOING;
     }
+
 }
 
 

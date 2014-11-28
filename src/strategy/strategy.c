@@ -27,6 +27,8 @@
 #include "move.h"
 #include "arm.h"
 
+Propulsion_Move *param_move;
+
 
 
 
@@ -38,15 +40,45 @@
 
 void strategy_example(File *actions)
 {
-    Propulsion_Parameters *param_propulsion = malloc(sizeof(Propulsion_Parameters));
+    param_move = malloc(sizeof(Propulsion_Move));
     Actuators_Parameters *param_actuators = malloc(sizeof(Actuators_Parameters));
 
-    param_propulsion->speed = 4;
+    param_move->speed = 4;
+    param_move->angle = 0;
+    param_move->x = 6;
+    param_move->y = 6;
     param_actuators->sensors = 31;
-    action_add(actions, PROPULSION, "Propulsion test", __propulsion_move, param_propulsion, 2, __propulsion_move_failed_handler, NO);
+    action_add(actions, PROPULSION, "Path finder", __propulsion_move, param_move, 2, __propulsion_move_failed_handler, NO);
     action_add(actions, ACTUATORS, "Actuator test", __actuators_arm, param_actuators, 2, __actuators_arm_failed_handler, NO);
 
     action_print_file(actions);
+}
+
+
+void strategy_handle_path_finder(Action *action)
+{
+    LOG(LOG_DEBUG, "Path finder handler");
+
+    if (!strcmp(action->name,"Path finder"))
+    {
+        if (param_move != NULL)
+        {
+            if (param_move->x != 6)
+            {
+                LOG(LOG_DEBUG, "Didn't reach the position");
+                LOG(LOG_DEBUG, "Actual position: %d",param_move->x);
+            }else
+                LOG(LOG_DEBUG, "Reach the position");
+        }
+    }
+}
+
+
+void strategy_management(Action *action)
+{
+
+    strategy_handle_path_finder(action);
+
 }
 
 
@@ -54,25 +86,37 @@ void strategy_handle_state(File *actions)
 {
     Action *action = actions->first;
     if (action == NULL)
-    {
-        action_print_file(actions);
         return;
-    }
 
     if (action->state == DONE || action->state == FAILED)
+    {
+        strategy_management(action);
         action_remove_by_index(actions, 1);
+        action = action->next;
+        if (action == NULL)
+            return;
+
+        if (action->state == DONE || action->state == FAILED)
+        {
+            strategy_management(action);
+            action_remove_by_index(actions, 1);
+        }
+
+        return;
+    }else
+        strategy_management(action);
 
     action = action->next;
     if (action == NULL)
-    {
-        action_print_file(actions);
         return;
-    }
 
     if (action->state == DONE || action->state == FAILED)
+    {
+        strategy_management(action);
         action_remove_by_index(actions, 2);
+    }else
+        strategy_management(action);
 
-    action_print_file(actions);
 }
 
 
@@ -90,6 +134,7 @@ void strategy_init(File *actions)
     LOG(LOG_INFO, "Init Strategy");
 
     strategy_example(actions);
+
 }
 
 

@@ -69,7 +69,6 @@ int sysfs_read(const char *path, unsigned char *buffer)
 	    buf += ret;
     }while (ret > 0);
 
-  close:
     close(fd);
 
     if (ret < 0)
@@ -83,6 +82,23 @@ int sysfs_read(const char *path, unsigned char *buffer)
 
 int sysfs_write(const char *path, unsigned char *buffer)
 {
+    int fd;
+    int ret;
 
+    fd = open(path, O_WRONLY);
+    if (fd < 0)
+    {
+	error("Failed to open %s : %s\n", path, strerror(errno));
+	return fd;
+    }
 
+    ret = write(fd, buffer, sizeof(buffer));
+
+    close(fd);
+
+    if (ret < 0)
+    {
+	error("Failed to write file %s : %s\n", path, strerror(errno));
+    }
+    return ret;
 }

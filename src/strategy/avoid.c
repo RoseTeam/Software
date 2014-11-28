@@ -43,7 +43,7 @@ void *avoid_thread(void *data)
 	sleep(2);
 
     }
-
+    return NULL;
 }
 
 

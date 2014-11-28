@@ -45,7 +45,7 @@ void propulsion_handle_state(Action *propulsion, ACTION_STATE ret)
     {
         propulsion->state = ret;
 
-        if(propulsion->state == DONE)
+        if(propulsion->state == DONE || propulsion->state == FAILED)
         {
             timer1_reset();
             propulsion_timer_expired = false;
@@ -106,7 +106,7 @@ void propulsion_init(void)
 {
     LOG(LOG_INFO, "Init Propulsion");
     propulsion_timer_expired = false;
-    propulsion_set_timer == false;
+    propulsion_set_timer = false;
     timer1_add(propulsion_callback_timer);
 }
 

@@ -24,13 +24,16 @@
 #include <stdio.h>
 #include "action.h"
 
-typedef struct Propulsion_Parameters Propulsion_Parameters;
-struct Propulsion_Parameters
+typedef struct Propulsion_Move Propulsion_Move;
+struct Propulsion_Move
 {
     int speed;
+    int angle;
+    int x;
+    int y;
 };
 
-ACTION_STATE __propulsion_move(Propulsion_Parameters *parameters);
+ACTION_STATE __propulsion_move(Propulsion_Move *parameters);
 
 void __propulsion_move_failed_handler(void);
 
