@@ -18,7 +18,7 @@ AM_CPPFLAGS = \
 includes_HEADERS = strategy.h
 includesdir = $(includedir)/Software
 
-lib_LTLIBRARIES = libstrategy.la
+noinst_LTLIBRARIES = libstrategy.la
 libstrategy_la_SOURCES = \
 strategy.h \
 avoid.h \
@@ -26,4 +26,5 @@ strategy.c \
 avoid.c
 
 libstrategy_la_LIBADD = ../extras/libextras.la ../actuators/libactuators.la ../propulsion/libpropulsion.la
+libstrategy_la_LDFLAGS = -lpthread
 #libstrategy_la_LDFLAGS = -no-undefined @lt_enable_auto_import@ -version-info @version_info@ @release_info@

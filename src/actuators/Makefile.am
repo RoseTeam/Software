@@ -14,7 +14,7 @@ AM_CPPFLAGS = \
 includes_HEADERS = actuators.h
 includesdir = $(includedir)/Software
 
-lib_LTLIBRARIES = libactuators.la
+noinst_LTLIBRARIES = libactuators.la
 libactuators_la_SOURCES = \
 actuators.h \
 arm.h \

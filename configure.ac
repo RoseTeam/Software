@@ -25,6 +25,7 @@ define([AC_LIBTOOL_LANG_F77_CONFIG], [:])dnl
 AC_PROG_LIBTOOL
 
 AC_OUTPUT([
+robot.pc
 Makefile
 src/Makefile
 src/actuators/Makefile

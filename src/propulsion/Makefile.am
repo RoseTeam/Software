@@ -14,7 +14,7 @@ AM_CPPFLAGS = \
 includes_HEADERS = propulsion.h
 includesdir = $(includedir)/Software
 
-lib_LTLIBRARIES = libpropulsion.la
+noinst_LTLIBRARIES = libpropulsion.la
 libpropulsion_la_SOURCES = \
 propulsion.h \
 move.h \

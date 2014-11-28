@@ -11,7 +11,7 @@ AM_CPPFLAGS = \
 includes_HEADERS = roxml.h
 includesdir = $(includedir)/Software
 
-lib_LTLIBRARIES = libroxml.la
+noinst_LTLIBRARIES = libroxml.la
 libroxml_la_SOURCES = \
 roxml-defines.h \
 roxml-doxy.h \

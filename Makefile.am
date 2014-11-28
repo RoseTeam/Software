@@ -1,4 +1,5 @@
 AUTOMAKE_OPTIONS = 1.4 foreign
+ACLOCAL_AMFLAGS = -I m4
 
 SUBDIRS = src
 
@@ -11,4 +12,8 @@ EXTRA_DIST= \
 AUTHORS \
 COPYING \
 README \
-autogen.sh
+autogen.sh \
+robot.pc.in
+
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = robot.pc
